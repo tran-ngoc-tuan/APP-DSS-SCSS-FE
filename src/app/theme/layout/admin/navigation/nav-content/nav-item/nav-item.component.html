@@ -1,0 +1,29 @@
+
+<ng-container *ngIf="item_item">
+  <!-- Điều hướng nội bộ -->
+  <li *ngIf="item_item.url && !item_item.external" 
+      [ngClass]="item_item.classes" 
+      [routerLinkActive]="['active']">
+    <a class="nav-link" 
+       [target]="item_item.target ? '_blank' : '_self'" 
+       [routerLink]="[item_item.url]" 
+       (click)="closeOtherMenu($event)">
+      <span *ngIf="item_item.icon" class="pcoded-micon">
+        <i class="feather" [ngClass]="item_item.icon"></i>
+      </span>
+      <span class="pcoded-mtext">{{ item_item.title }}</span>
+    </a>
+  </li>
+
+  <!-- Điều hướng ngoại -->
+  <li *ngIf="item_item.url && item_item.external" 
+      [ngClass]="item_item.classes">
+    <a [target]="item_item.target ? '_blank' : '_self'" 
+       [href]="item_item.url">
+      <span *ngIf="item_item.icon" class="pcoded-micon">
+        <i class="feather" [ngClass]="item_item.icon"></i>
+      </span>
+      <span class="pcoded-mtext">{{ item_item.title }}</span>
+    </a>
+  </li>
+</ng-container>

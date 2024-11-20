@@ -1,0 +1,26 @@
+<ng-scrollbar (clickOutside)="navMob()" style="height: calc(100vh - 56px)">
+  <div class="navbar-content">
+    <ul class="nav pcoded-inner-navbar" (clickOutside)="fireOutClick()"> 
+      <!-- Sử dụng *ngFor cho danh sách điều hướng -->
+      <ng-container *ngFor="let item of navigationItemsFromAdmin; trackBy: trackItem">
+        <ng-container [ngSwitch]="item.type">   
+          <app-nav-group *ngSwitchCase="'group'" [item_group]="item" [depth]="0"></app-nav-group>
+          <app-nav-collapse *ngSwitchCase="'collapse'"  [item_collapse]="item" [depth]="0"></app-nav-collapse>
+          <app-nav-item *ngSwitchCase="'item'" [item_item]="item"></app-nav-item> 
+      </ng-container>
+    </ng-container>
+    </ul>
+     <!-- Thẻ card hiển thị ảnh sidebar -->
+    <div class="card text-center">
+      <div class="card-body">
+        <img src="assets/images/sidebar.png" alt="images" class="img-fluid mb-2" />
+        <h5>Gradient Pro</h5>
+        <p>Checkout Gradient Premium Features</p>
+      </div>
+    </div>
+     <!-- Phiên bản ứng dụng -->
+    <div class="version">
+      <label disabled class="pe-auto">{{ currentApplicationVersion }}</label>
+    </div>
+  </div>
+</ng-scrollbar>

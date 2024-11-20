@@ -11,18 +11,25 @@
     "noFallthroughCasesInSwitch": true,
     "skipLibCheck": true,
     "isolatedModules": true,
-    "esModuleInterop": true,
+    "esModuleInterop": true,// Cho phép tương thích với ES modules (nếu cần)
     "sourceMap": true,
     "declaration": false,
     "experimentalDecorators": true,
-    "moduleResolution": "bundler",
+    "moduleResolution": "node",//bundler
+    "resolveJsonModule": true,  // Cho phép import file JSON
+    //"baseUrl": "./scr",
+    "baseUrl": "./",
+    "paths": {
+      "@src/*": ["src/*"]
+    },
     "importHelpers": true,
     "target": "ES2022",
     "module": "ES2022",
     "lib": [
       "ES2022",
       "dom"
-    ]
+    ],
+    
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,

@@ -1,0 +1,17 @@
+<li class="nav-item pcoded-menu-caption">
+  <label>{{ item_group.title }}</label>
+</li>
+<div *ngIf="hasChildren()" class="pcoded-submenu">
+  <ul>
+    <ng-container *ngFor="let child of item_group.children; trackBy: trackItem">
+      <ng-container [ngSwitch]="child.type">
+        <!-- Điều hướng theo type 'item' -->
+        <app-nav-item *ngSwitchCase="'item'" [item_item]="child"></app-nav-item>
+        <!-- Điều hướng theo type 'collapse' -->
+        <app-nav-collapse *ngSwitchCase="'collapse'" [item_collapse]="child"></app-nav-collapse>
+      </ng-container>
+    </ng-container>
+              <!-- Dùng cho component động NavCollapseComponent -->
+              <ng-template #NavGroupdynamicContainer></ng-template>
+  </ul>
+</div>

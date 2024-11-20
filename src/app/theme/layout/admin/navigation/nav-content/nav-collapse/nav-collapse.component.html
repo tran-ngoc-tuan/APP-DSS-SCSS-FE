@@ -1,0 +1,21 @@
+
+<li class="nav-item pcoded-hasmenu"   routerLinkActive="active">
+  <!-- Liên kết điều hướng, sử dụng `javascript:void(0)` nếu không có URL -->
+  <a class="nav-link" href="javascript:void(0)" (click)="navCollapse($event)">
+    <span class="pcoded-micon" *ngIf="item_collapse?.icon">
+      <i [ngClass]="item_collapse.icon"></i>
+    </span>
+    <span class="pcoded-mtext">{{ item_collapse.title}}</span>
+  </a>
+  <div *ngIf="isCollapsed && hasChildren()" class="pcoded-submenu">
+    <ng-container *ngIf="item_collapse?.children">
+        <ng-container *ngFor="let child of item_collapse.children; trackBy: trackItem">
+          <ng-container [ngSwitch]="child.type">         
+            <app-nav-item *ngSwitchCase="'item'" [item_item]="child"></app-nav-item>
+            <app-nav-collapse *ngSwitchCase="'collapse'" [item_collapse]="child"></app-nav-collapse>            
+          </ng-container>
+        </ng-container>
+    </ng-container>
+  </div>
+  <ng-template #NavCollapsedynamicContainer></ng-template>
+</li>
