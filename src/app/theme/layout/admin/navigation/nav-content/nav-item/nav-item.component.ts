@@ -14,6 +14,7 @@ export class NavItemComponent {
 // public props
 @Input() item_item!: NavigationItem;
 ngOnInit() {
+  //console.log('Tôi là nav-item:',this.item_item.title);
   //console.log('Tôi là nav-item:', JSON.stringify(this.item_NavContent.title, null, 2));
   //console.table(this.item_NavContent.children);
  // console.log('Tôi là nav-item',this.item.title);

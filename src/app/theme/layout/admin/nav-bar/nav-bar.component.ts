@@ -1,4 +1,4 @@
-import { Component, EventEmitter, HostListener, Inject, Output, PLATFORM_ID } from '@angular/core';
+import { Component, EventEmitter, HostListener, Inject, Input, Output, PLATFORM_ID } from '@angular/core';
 import { NavLeftComponent } from "./nav-left/nav-left.component";
 import { NavRightComponent } from "./nav-right/nav-right.component";
 import { CommonModule } from '@angular/common';  // Import CommonModule để sử dụng trong component
@@ -18,7 +18,6 @@ export class NavBarComponent {
   windowWidth!: number; // Sẽ được gán khi chắc chắn trong trình duyệt
   @Output() NavCollapse = new EventEmitter<boolean>();;
   @Output() NavCollapsedMob = new EventEmitter<boolean>();;
-
   constructor(@Inject(PLATFORM_ID) private platformId: any) {
     // Chỉ gán windowWidth nếu đang trong môi trường trình duyệt
     if (isPlatformBrowser(this.platformId)) {
@@ -27,13 +26,19 @@ export class NavBarComponent {
   }
 
   // public method
-  toggleMobOption() {
-    console.warn('Hello');
+  toggleMenuCollapse() {
+    this.menuClass = !this.menuClass; // Đổi trạng thái thu gọn
+    this.NavCollapse.emit(this.menuClass);
+    this.collapseStyle = this.menuClass ? 'none' : 'block'; // Điều chỉnh collapseStyle khi thu gọn
+  }
+  // public method
+  toggleMobOption() {   
     this.menuClass = !this.menuClass;
     this.collapseStyle = this.menuClass ? 'block' : 'none';
   }
 
   navCollapse() {
+    console.warn('Hello ComponentNavBar');
     if (this.windowWidth >= 992) {
       this.NavCollapse.emit();
     }

@@ -729,7 +729,9 @@
   
           .pcoded-submenu {
             display: none;
-  
+            &.open {/// Tuấn mới bổ sung đoạn này
+              display: block !important; // Hiển thị khi mở///
+            }///
             a {
               &:after {
                 top: 7px;
@@ -792,7 +794,7 @@
   
               + li {
                 > a {
-                  // border-top: 1px solid lighten($menu-dark-background,8%);
+                   border-top: 1px solid lighten($menu-dark-background,8%);
                 }
               }
   

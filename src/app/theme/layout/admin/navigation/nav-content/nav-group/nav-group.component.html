@@ -4,14 +4,15 @@
 <div *ngIf="hasChildren()" class="pcoded-submenu">
   <ul>
     <ng-container *ngFor="let child of item_group.children; trackBy: trackItem">
-      <ng-container [ngSwitch]="child.type">
-        <!-- Điều hướng theo type 'item' -->
-        <app-nav-item *ngSwitchCase="'item'" [item_item]="child"></app-nav-item>
+      <ng-container [ngSwitch]="child.type">       
         <!-- Điều hướng theo type 'collapse' -->
-        <app-nav-collapse *ngSwitchCase="'collapse'" [item_collapse]="child"></app-nav-collapse>
+        <app-nav-collapse *ngSwitchCase="'collapse'" [item_collapse]="child" [depth]="depth + 1"></app-nav-collapse>
+         <!-- Điều hướng theo type 'item' -->
+         <app-nav-item *ngSwitchCase="'item'" [item_item]="child"></app-nav-item>
       </ng-container>
     </ng-container>
-              <!-- Dùng cho component động NavCollapseComponent -->
-              <ng-template #NavGroupdynamicContainer></ng-template>
+
   </ul>
+                <!-- Dùng cho component động NavCollapseComponent -->
+                <ng-template #NavGroupdynamicContainer></ng-template>
 </div>

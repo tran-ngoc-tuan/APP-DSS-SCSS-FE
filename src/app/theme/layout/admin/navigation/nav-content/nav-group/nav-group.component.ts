@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ComponentRef, Input, OnChanges, OnInit, SimpleChanges, ViewChild, ViewContainerRef} from '@angular/core';
+import { AfterViewInit, ChangeDetectionStrategy, Component, ComponentRef, Input, OnChanges, OnInit, SimpleChanges, ViewChild, ViewContainerRef} from '@angular/core';
 import { NavigationItem } from '../../navigation';
 import { CommonModule } from '@angular/common';
 import { NavItemComponent } from "../nav-item/nav-item.component";
@@ -9,7 +9,8 @@ import { NavCollapseComponent } from "../nav-collapse/nav-collapse.component";
   standalone: true,
   imports: [NavItemComponent, CommonModule, NavCollapseComponent],
   templateUrl: './nav-group.component.html',
-  styleUrl: './nav-group.component.scss'
+  styleUrl: './nav-group.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NavGroupComponent implements OnInit, OnChanges, AfterViewInit{
   // public props
@@ -48,10 +49,10 @@ ngOnInit() {
   }
 }
 async ngAfterViewInit() {
-  //console.log('Checking container:', this.container);
+  //console.log('NavGroupComponent view initialized.');
   if (this.container) {
     //console.warn('Đã bắt đầu call NavCollapseComponent :');
-    this.loadNavCollapseComponent();
+    ////this.loadNavCollapseComponent();
     //console.warn('Sau khi call NavCollapseComponent :');
   } else {
     // Sử dụng setTimeout để trì hoãn, cho phép Angular hoàn tất quá trình khởi tạo
@@ -59,18 +60,16 @@ async ngAfterViewInit() {
       if (this.container) {
         this.loadNavCollapseComponent();
       } else {
-        console.warn("ViewContainerRef 'container' chưa được khởi tạo sau khi trì hoãn.");
+        //console.warn("ViewContainerRef 'container' chưa được khởi tạo sau khi trì hoãn.");
       }
     }, 0);
   }
 }
 async loadNavCollapseComponent() {
-  ///console.warn('Đã vào NavCollapseComponent :');
     if (this.item_group?.children) {      
       const { NavCollapseComponent } = await import('../nav-collapse/nav-collapse.component');
       if (this.container) {
         this.container.clear();
-        //console.warn('Clear xong!');
       }
 
       this.item_group.children.forEach(child => {
@@ -95,10 +94,8 @@ async loadNavCollapseComponent() {
     throw new Error('Method not implemented.');
   }
   ngOnChanges(changes: SimpleChanges) {
-    if (changes['item_group'] && changes['item_group'].currentValue) {
-      //console.log('item_group received:', this.item_group);
-    } else {
-      //console.warn('item_group is undefined or null');
+    if (changes['item_group']) {
+      console.log('NavGroupComponent: item_group thay đổi:', changes['item_group'].currentValue);
     }
   }
 }

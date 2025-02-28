@@ -1,0 +1,11 @@
+
+.pcoded-submenu11 {
+    display: none; // Mặc định ẩn
+    &.open {
+      display: block !important; // Hiển thị khi mở
+    }
+  }
+  
+  .pcoded-hasmenu.pcoded-trigger > .pcoded-submenu11 {
+    display: block; // Khi menu được kích hoạt
+  }

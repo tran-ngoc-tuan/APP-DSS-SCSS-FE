@@ -12,13 +12,6 @@ export class NavigationComponent {
   // public props
   windowWidth!: number;
   @Output() NavMobCollapse = new EventEmitter<boolean>();
-  //@Input() navigationItems: NavigationItem[]=[]; // Đảm bảo item được truyền vào: NavigationItem[] = NavigationItems; // Gán giá trị cho navigationItems ở đây
-  /*
-  ngOnInit() {
-    console.log('Tôi là  NavigationComponent nhận giá trị từ  AdminComponents', JSON.stringify(this.navigationItems, null, 2));
-  }
-  */
-  // constructor
   constructor(@Inject(PLATFORM_ID) private platformId: any) {
     // Chỉ gán windowWidth nếu đang trong môi trường trình duyệt
     if (isPlatformBrowser(this.platformId)) {

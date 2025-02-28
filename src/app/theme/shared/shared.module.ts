@@ -11,9 +11,6 @@ import { NgbDropdownModule, NgbNavModule, NgbModule } from '@ng-bootstrap/ng-boo
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DataFilterPipe } from './filter/data-filter.pipe';
 import { DashAnalyticsComponent } from '@src/app/page/dashboard/dash-analytics.component';
-import { NavGroupComponent } from '../layout/admin/navigation/nav-content/nav-group/nav-group.component';
-import { NavItemComponent } from '../layout/admin/navigation/nav-content/nav-item/nav-item.component';
-import { NavCollapseComponent } from '../layout/admin/navigation/nav-content/nav-collapse/nav-collapse.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -28,9 +25,6 @@ import { NavCollapseComponent } from '../layout/admin/navigation/nav-content/nav
     BreadcrumbComponent,  // Import BreadcrumbComponent if it is also standalone
     CommonModule  ,
     DashAnalyticsComponent,
-    NavGroupComponent,
-    NavItemComponent,
-    NavCollapseComponent
   ],
   exports: [
     CommonModule,
@@ -45,9 +39,6 @@ import { NavCollapseComponent } from '../layout/admin/navigation/nav-content/nav
     SpinnerComponent,
     DataFilterPipe,
     DashAnalyticsComponent,
-    NavGroupComponent,
-    NavItemComponent,
-    NavCollapseComponent
   ],
   declarations: [DataFilterPipe]
 })

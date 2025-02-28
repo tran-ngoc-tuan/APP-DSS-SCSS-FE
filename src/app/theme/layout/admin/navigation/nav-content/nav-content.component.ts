@@ -4,8 +4,8 @@ import { NavigationItem, NavigationItems } from '../navigation';
 import { CommonModule, Location, LocationStrategy, isPlatformBrowser } from '@angular/common';
 import { NgScrollbarModule } from 'ngx-scrollbar';
 import { ClickOutsideModule } from 'ng-click-outside';
-import { NavGroupComponent } from './nav-group/nav-group.component';
-import { NavCollapseComponent } from './nav-collapse/nav-collapse.component';
+import { NavGroupComponent } from "./nav-group/nav-group.component";
+import { NavCollapseComponent } from "./nav-collapse/nav-collapse.component";
 import { NavItemComponent } from "./nav-item/nav-item.component";
 
 @Component({
@@ -53,8 +53,6 @@ export class NavContentComponent implements OnInit {
   // life cycle event
   ngOnInit() {
     //console.warn('Dữ liệu gốc NavigationItems là đầu vào', JSON.stringify(this.navigationItemsFromAdmin, null, 2));
-   //console.warn('Dữ liệu gốc NavigationItems là đầu vào',this.navigationItemsFromAdmin);
-   //console.warn('NavigationItems:', JSON.stringify(this.navigationItemsFromAdmin, null, 2));
     if (isPlatformBrowser(this.platformId)) {
       if (this.windowWidth < 992) {
         const navbar = document.querySelector('.pcoded-navbar');
