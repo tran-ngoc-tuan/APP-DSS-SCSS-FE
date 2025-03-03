@@ -12,6 +12,7 @@ export class NavigationComponent {
   // public props
   windowWidth!: number;
   @Output() NavMobCollapse = new EventEmitter<boolean>();
+  @Input() isMenuCollapsed: boolean = false; // Nhận trạng thái thu gọn từ AdminComponent
   constructor(@Inject(PLATFORM_ID) private platformId: any) {
     // Chỉ gán windowWidth nếu đang trong môi trường trình duyệt
     if (isPlatformBrowser(this.platformId)) {

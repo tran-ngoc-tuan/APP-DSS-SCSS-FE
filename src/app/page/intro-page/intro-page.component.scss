@@ -1,0 +1,10 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    scroll-behavior: smooth; /* Nếu không sử dụng scrollIntoView */
+  }
+  
+  section {
+    scroll-margin-top: 70px; /* Điều chỉnh nếu có header cố định */
+  }
+  

@@ -1,5 +1,14 @@
-
 <ul class="navbar-nav ms-auto">
+
+<!-- Icon Home -->
+<li >
+  <a href="javascript:" class="dropdown-toggle">
+    <i class="icon feather icon-home" title="Home"  (click)="goToIntroPage()"></i>
+  </a>
+</li>
+
+
+  <!-- Icon Notification -->
   <li>
     <div class="dropdown" ngbDropdown placement="auto">
       <a ngbDropdownToggle href="javascript:">
@@ -33,39 +42,6 @@
               </div>
             </div>
           </li>
-          <li class="n-title">
-            <p class="m-b-0">EARLIER</p>
-          </li>
-          <li class="notification">
-            <div class="media">
-              <img class="img-radius" src="assets/images/user/avatar-2.jpg" alt="Generic placeholder image" />
-              <div class="media-body">
-                <p>
-                  <strong>Joseph William</strong>
-                  <span class="n-time text-muted">
-                    <i class="icon feather icon-clock m-r-10"></i>
-                    30 min
-                  </span>
-                </p>
-                <p>Purchase New Theme and make payment</p>
-              </div>
-            </div>
-          </li>
-          <li class="notification">
-            <div class="media">
-              <img class="img-radius" src="assets/images/user/avatar-3.jpg" alt="Generic placeholder image" />
-              <div class="media-body">
-                <p>
-                  <strong>Sara Soudein</strong>
-                  <span class="n-time text-muted">
-                    <i class="icon feather icon-clock m-r-10"></i>
-                    30 min
-                  </span>
-                </p>
-                <p>currently login</p>
-              </div>
-            </div>
-          </li>
         </ul>
         <div class="noti-footer">
           <a href="javascript:">show all</a>
@@ -73,6 +49,9 @@
       </div>
     </div>
   </li>
+
+
+  <!-- Icon Chat -->
   <li (click)="this.visibleUserList = !this.visibleUserList">
     <div class="dropdown">
       <a href="javascript:" class="displayChatbox dropdown-toggle">
@@ -81,6 +60,8 @@
       </a>
     </div>
   </li>
+
+  <!-- User Profile Dropdown -->
   <li>
     <div class="dropdown drp-user" ngbDropdown placement="auto">
       <a href="javascript:" ngbDropdownToggle>
@@ -118,32 +99,3 @@
     </div>
   </li>
 </ul>
-@if (visibleUserList) {
-  <section class="header-user-list" [ngClass]="{ open: visibleUserList }" [@slideInOutLeft]>
-    <app-chat-user-list
-      (ChatToggle)="onChatToggle($event)"
-      (ChatCollapse)="this.visibleUserList = !this.visibleUserList; this.chatMessage = false"
-    ></app-chat-user-list>
-  </section>
-}
-
-@if (chatMessage) {
-  <section class="header-chat" [ngClass]="{ open: chatMessage }" [@slideInOutLeft]>
-    <app-chat-msg (ChatToggle)="this.chatMessage = !this.chatMessage" [friendId]="friendId"></app-chat-msg>
-  </section>
-}
-
-@if (visibleUserList) {
-  <section class="header-user-list" [ngClass]="{ open: visibleUserList }" [@slideInOutRight]>
-    <app-chat-user-list
-      (ChatToggle)="onChatToggle($event)"
-      (ChatCollapse)="this.visibleUserList = !this.visibleUserList; this.chatMessage = false"
-    ></app-chat-user-list>
-  </section>
-}
-
-@if (chatMessage) {
-  <section class="header-chat" [ngClass]="{ open: chatMessage }" [@slideInOutRight]>
-    <app-chat-msg (ChatToggle)="this.chatMessage = !this.chatMessage" [friendId]="friendId"></app-chat-msg>
-  </section>
-}

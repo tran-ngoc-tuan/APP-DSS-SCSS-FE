@@ -50,13 +50,13 @@ export const NavigationItems: NavigationItem[] = [
             id: 'button',
             title: 'Button',
             type: 'item',
-            url: '/component/button'
+            url: '/home/component/button'
           },
           {
             id: 'badges',
             title: 'Badges',
             type: 'item',
-            url: '/component/badges'
+            url: '/home/component/badges'
           },
           {
             id: 'breadcrumb-pagination',
@@ -85,6 +85,68 @@ export const NavigationItems: NavigationItem[] = [
         ]
       }
     ]
+  },
+  {
+    id: 'ui-component1',
+    title: 'Viễn thông',
+    type: 'group',
+    icon: 'icon-group',
+    children: [
+      {
+        id: 'basicvt',
+        title: 'VTDR',
+        type: 'collapse',
+        icon: 'feather icon-box',
+        children: [
+          {
+            id: 'qltkndabc',
+            title: 'Chức năng 1',
+            type: 'item',
+            url: '/home/ui-vtcntt/QL_TKND/qltkndabc'
+          },
+          {
+            id: 'qltkndcde',
+            title: 'Chức năng 2',
+            type: 'item',
+            url: '/home/ui-vtcntt/QL_TKND/qltkndcde'
+          },
+          {
+            id: 'qltknddang-ky',
+            title: 'Chức năng 3',
+            type: 'item',
+            url: '/home/ui-vtcntt/QL_TKND/qltknddang-ky'
+          }
+        ]
+      }
+    ],
+  },
+  {
+    id: 'ui-component1',
+    title: 'Viễn thông',
+    type: 'group',
+    icon: 'icon-group',
+    children: [
+      {
+        id: 'basicvt',
+        title: 'QTHT',
+        type: 'collapse',
+        icon: 'feather icon-box',
+        children: [
+          {
+            id: 'quantrithaotacmenu',
+            title: 'Thao tác Menu',
+            type: 'item',
+            url: '/home/ui-vtcntt/QUANTRI/quantrithaotacmenu'
+          },
+          {
+            id: 'quantriphanquyenmenu',
+            title: 'Phân quyền',
+            type: 'item',
+            url: '/home/ui-vtcntt/QUANTRI/quantriphanquyenmenu'
+          },          
+        ]
+      }
+    ],
   },
   {
     id: 'Authentication',
@@ -138,7 +200,7 @@ export const NavigationItems: NavigationItem[] = [
         id: 'forms',
         title: 'Basic Forms',
         type: 'item',
-        url: '/forms',
+        url: 'forms',
         classes: 'nav-item',
         icon: 'feather icon-file-text'
       },
@@ -146,7 +208,7 @@ export const NavigationItems: NavigationItem[] = [
         id: 'tables',
         title: 'tables',
         type: 'item',
-        url: '/tables',
+        url: 'tables',
         classes: 'nav-item',
         icon: 'feather icon-server'
       }
@@ -162,7 +224,7 @@ export const NavigationItems: NavigationItem[] = [
         id: 'sample-page',
         title: 'Sample Page',
         type: 'item',
-        url: '/sample-page',
+        url: 'sample-page',
         classes: 'nav-item',
         icon: 'feather icon-sidebar'
       },

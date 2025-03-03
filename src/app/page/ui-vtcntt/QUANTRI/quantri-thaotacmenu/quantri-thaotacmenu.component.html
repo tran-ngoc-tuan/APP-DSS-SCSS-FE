@@ -1,0 +1,148 @@
+<div class="container-fluid">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+      <h3>Quản lý phân quyền</h3>
+      <button class="btn btn-primary" (click)="openAddChucnangnModal(addPermissionModal)" >
+        <i class="fa fa-plus"></i> Thêm mới
+      </button>
+    </div>
+  
+    <table class="table table-striped table-hover">
+      <thead class="table-primary">
+        <tr>
+          <th>STT</th>
+          <th>Phần mềm</th>
+          <th>Tên Menu</th>
+          <th>Kiểu loại menu</th>
+          <th>Icon hiển thị</th>
+          <th>URL</th>
+          <th>Parent</th>
+          <th class="text-center">Hành động sửa/xóa</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of getPagedData(); let i = index">
+          <td>{{ (page - 1) * pageSize + i + 1 }}</td>
+          <td>{{ item.phanHeID }}</td>
+          <td>{{ item.title }}</td>
+          <td>{{ item.type }}</td>
+          <td>{{ item.icon }}</td>
+          <td>{{ item.url }}</td>
+          <td>{{ item.parentId }}</td>
+          <!--
+          <td>
+            <button class="btn btn-warning btn-sm me-2" (click)="openEditChucnangModal(addPermissionModal, item)">
+              <i class="fa fa-edit"></i> Sửa
+            </button>
+            <button class="btn btn-danger btn-sm" (click)="deleteChucnangs(item)">
+              <i class="fa fa-trash"></i> Xóa
+            </button>
+          </td>
+          -->
+          <td class="text-center">
+            <button class="btn btn-warning btn-sm btn-icon-only me-2" (click)="openEditChucnangModal(addPermissionModal, item)" title="Sửa">
+              <i class="fa fa-edit"></i>
+            </button>
+            <button class="btn btn-danger btn-sm btn-icon-only" (click)="deleteChucnangs(item)" title="Xóa">
+              <i class="fa fa-trash"></i>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    
+<!-- Điều hướng phân trang -->
+<div class="d-flex justify-content-center align-items-center mt-3 gap-2">
+  <button class="btn btn-secondary px-4 py-2 fw-bold" (click)="prevPage()" [disabled]="page === 1">
+    ← Trang trước
+  </button>
+  <span class="fw-bold fs-5">Trang {{ page }} / {{ totalPages() }}</span>
+  <button class="btn btn-secondary px-4 py-2 fw-bold" (click)="nextPage()" [disabled]="page >= totalPages()">
+    Trang sau →
+  </button>
+</div>
+
+
+    
+  </div>
+ <!-- Modal Thêm Mới -->
+<ng-template #addPermissionModal let-modal>
+  <div class="modal-header bg-primary text-white">
+    <h5 class="modal-title">{{ modalTitle }}</h5>
+      <button type="button" class="btn-close btn-close-white" (click)="modal.dismiss()"></button>
+  </div>
+  <div class="modal-body">
+      <form>
+         <!-- Parent ID -->
+         <div class="row mb-2 align-items-center">
+          <label for="parentId" class="col-md-3 form-label text-end pe-0">Thuộc menu cha:</label>
+          <div class="col-md-9">
+            <input type="text" id="url" class="form-control form-control-sm" [(ngModel)]="newchucnang.parentId" name="parentId" required>                
+          </div>
+        </div>
+
+          <!-- Phần mềm -->
+          <div class="row mb-2 align-items-center">
+              <label for="phanHe" class="col-md-3 form-label text-end pe-0">Thuộc phần mềm:</label>
+              <div class="col-md-9">
+                  <select id="phanHe" class="form-select form-select-sm" [(ngModel)]="newchucnang.phanHeID" name="phanHe">
+                      <option *ngFor="let phanHe of menuPhanHe" [value]="phanHe.phanHeID">
+                          {{ phanHe.dienGiai }}
+                      </option>
+                  </select>
+              </div>
+          </div>
+
+          <!-- Tên chức năng -->
+          <div class="row mb-2 align-items-center">
+              <label for="title" class="col-md-3 form-label text-end pe-0">Tên chức năng (Menu):</label>
+              <div class="col-md-9">
+                  <input type="text" id="title" class="form-control form-control-sm" [(ngModel)]="newchucnang.title" name="title" required>
+              </div>
+          </div>
+
+          <!-- Kiểu loại menu -->
+          <div class="row mb-2 align-items-center">
+              <label for="role" class="col-md-3 form-label text-end pe-0">Kiểu loại menu:</label>
+              <div class="col-md-9">
+                  <select id="type" class="form-select form-select-sm" [(ngModel)]="newchucnang.type" name="type">
+                      <option value="group">group</option>
+                      <option value="collapse">collapse</option>
+                      <option value="item">item</option>
+                  </select>
+              </div>
+          </div>
+
+          <!-- URL -->
+          <div class="row mb-2 align-items-center">
+              <label for="url" class="col-md-3 form-label text-end pe-0">URL:</label>
+              <div class="col-md-9">
+                  <input type="text" id="url" class="form-control form-control-sm" [(ngModel)]="newchucnang.url" name="url" required>
+              </div>
+          </div>
+
+          <!-- Hình ảnh -->
+          <div class="row mb-2 align-items-center">
+              <label for="image" class="col-md-3 form-label text-end pe-0">Icon hiển thị:</label>
+              <div class="col-md-9">
+                <select class="form-select" [(ngModel)]="newchucnang.icon">
+                  <option *ngFor="let icon of icons" [value]="icon">
+                    {{ icon }}
+                  </option>
+                </select>
+              </div>
+          </div>
+         
+      </form>
+    </div>
+   <!-- Hiển thị icon đã chọn -->
+   <div *ngIf="newchucnang.icon" class="d-flex align-items-center gap-3 p-2 border rounded bg-light">
+    <p class="mb-0 fw-bold">Icon đã chọn:</p>
+    <i [ngClass]="['bi', 'bi-' + newchucnang.icon]" style="font-size: 24px; color: #007bff;"></i>
+  </div>
+  <div class="modal-footer">
+      <button class="btn btn-secondary" (click)="modal.dismiss()">Hủy</button>
+      <button class="btn btn-success" (click)="addeditChucnangs()">
+          <i class="fa fa-save"></i> Lưu
+      </button>
+  </div>
+</ng-template>

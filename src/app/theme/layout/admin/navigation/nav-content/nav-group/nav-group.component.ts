@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { NavItemComponent } from "../nav-item/nav-item.component";
 import { isPlatformBrowser } from '@angular/common';
 import { NavCollapseComponent } from "../nav-collapse/nav-collapse.component";
+import { FunctionMenu } from '@src/app/core/models/menu.model';
 @Component({
   selector: 'app-nav-group',
   standalone: true,
@@ -14,7 +15,7 @@ import { NavCollapseComponent } from "../nav-collapse/nav-collapse.component";
 })
 export class NavGroupComponent implements OnInit, OnChanges, AfterViewInit{
   // public props
-  @Input() item_group!: NavigationItem;
+  @Input() item_group!: FunctionMenu;
   @Input() depth: number = 0; // Khai báo thêm `depth` nếu cần sử dụng đệ quy sâu hơn
   location: any;
   locationStrategy: any;
@@ -82,7 +83,7 @@ async loadNavCollapseComponent() {
     }
   }
   // Hàm trackBy để tăng hiệu suất khi sử dụng *ngFor
-  trackItem(index: number, child: NavigationItem):any  {
+  trackItem(index: number, child: FunctionMenu):any  {
     return child?.id|| index;
   }
   
@@ -95,7 +96,7 @@ async loadNavCollapseComponent() {
   }
   ngOnChanges(changes: SimpleChanges) {
     if (changes['item_group']) {
-      console.log('NavGroupComponent: item_group thay đổi:', changes['item_group'].currentValue);
+      //console.log('NavGroupComponent: item_group thay đổi:');//, changes['item_group'].currentValue);
     }
   }
 }

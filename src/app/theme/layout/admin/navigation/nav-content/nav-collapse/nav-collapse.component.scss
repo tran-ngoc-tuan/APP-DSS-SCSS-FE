@@ -9,3 +9,59 @@
   .pcoded-hasmenu.pcoded-trigger > .pcoded-submenu11 {
     display: block; // Khi menu được kích hoạt
   }
+  .m-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  
+    .b-brand {
+      display: flex;
+      align-items: center;
+  
+      .logo {
+        display: block;
+        transition: opacity 0.3s ease;
+      }
+  
+      .logo-thumb {
+        display: none;
+      }
+    }
+  
+    // Khi menu thu gọn
+    &.menu-collapsed {
+      .b-brand {
+        .logo {
+          display: none; // Ẩn logo chính
+        }
+  
+        .logo-thumb {
+          display: block; // Hiển thị logo nhỏ
+        }
+      }
+  
+      .mobile-menu {
+        transform: rotateY(-90deg);
+        opacity: 0;
+        transition: all 0.3s ease;
+      }
+  
+      // Thêm hiệu ứng khi hover
+      &:hover {
+        .mobile-menu {
+          transform: rotateY(0);
+          opacity: 1;
+        }
+      }
+    }
+  }
+  
+  .collapse.navbar-collapse {
+    transition: all 0.3s ease-in-out;
+    display: block;
+  
+    &.menu-collapsed {
+      display: none; // Ẩn nội dung collapse
+    }
+  }
+  

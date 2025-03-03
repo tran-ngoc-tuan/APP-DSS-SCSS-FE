@@ -3,22 +3,19 @@
  // src/styles.scss
 //@import 'scss/themes/general';           // Sau đó import các tệp khác
 @import '../scss/settings/theme-variables';// Import biến trước
+@import '../scss/settings/custom-variables';
+@import '../scss/settings/color-variables';
+
 @import 'scss/themes/general';           // Sau đó import các tệp khác
 @import 'scss/themes/generic';           // Sau đó import các tệp khác
 @import 'scss/themes/minixs/function';
-
-// icon
-@import 'scss/themes/font/datta-icon';
-@import 'scss/themes/font/feather';
-
 
 
 @import '../node_modules/@fortawesome/fontawesome-free/scss/fontawesome';
 @import '../node_modules/@fortawesome/fontawesome-free/scss/brands';
 @import '../node_modules/@fortawesome/fontawesome-free/scss/solid';
 @import '../node_modules/@fortawesome/fontawesome-free/scss/regular';
-//@import 'scss/themes/font/fontawesome';
-//@import 'scss/themes/font/flaticon';
+
 
 
 @import '../node_modules/bootstrap/scss/bootstrap';

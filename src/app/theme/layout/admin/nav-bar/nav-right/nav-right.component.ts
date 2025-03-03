@@ -4,12 +4,13 @@ import { NgbDropdownConfig } from '@ng-bootstrap/ng-bootstrap';
 import { ChatUserListComponent } from "./chat-user-list/chat-user-list.component";
 import { ChatMsgComponent } from "./chat-msg/chat-msg.component";
 import { CommonModule } from '@angular/common';  // Import CommonModule để sử dụng trong component
-import { RouterModule } from '@angular/router';  // Import RouterModule
+import { Router, RouterModule } from '@angular/router';
+import { ConfigurationComponent } from "../../configuration/configuration.component";  // Import RouterModule
 
 @Component({
   selector: 'app-nav-right',
   standalone: true,
-  imports: [ChatUserListComponent, ChatMsgComponent,CommonModule,RouterModule],
+  imports: [ChatUserListComponent, ChatMsgComponent, CommonModule, RouterModule, ConfigurationComponent],
   templateUrl: './nav-right.component.html',
   styleUrl: './nav-right.component.scss',
   providers: [NgbDropdownConfig],
@@ -31,11 +32,20 @@ export class NavRightComponent {
  friendId!: number;
 
  // constructor
- constructor() {
+ constructor(   private router: Router) {
    this.visibleUserList = false;
    this.chatMessage = false;
  }
-
+ async goToIntroPage() {
+  // Điều hướng đến AdminComponent (route '/home')
+  const success = await this.router.navigate(['/intro-page']);
+  if (success) {
+    console.log('Chuyển hướng thành công đến IntroPage!');
+    console.log('URL hiện tại:', this.router.routerState.snapshot.url);
+  } else {
+    console.error('Chuyển hướng không thành công!');
+  }
+}
  // public method
  onChatToggle(friendID: number) {
    this.friendId = friendID;

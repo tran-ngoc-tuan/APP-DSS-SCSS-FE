@@ -9,5 +9,7 @@ import { RouterModule } from '@angular/router';
   styleUrl: './sample-page.component.scss'
 })
 export  class SamplePageComponent {
-
+  ngOnInit() {
+    console.log('Sample Page Component Loaded 16.01.2025');
+  }
 }

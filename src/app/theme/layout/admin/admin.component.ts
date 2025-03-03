@@ -49,20 +49,19 @@ export class AdminComponent  {
 
   
   // public method
- navMobClick(): void {
-  console.warn('Hello ComponentAdmin');
-  if (isPlatformBrowser(this.platformId) && this.windowWidth < 992) {
-    const navElement = document.querySelector('app-navigation.pcoded-navbar');
-    if (this.navCollapsedMob && !navElement?.classList.contains('mob-open')) {
-      this.navCollapsedMob = !this.navCollapsedMob;
-      setTimeout(() => {
+  navMobClick() {
+    if (this.windowWidth < 992) {
+      if (this.navCollapsedMob && !document.querySelector('app-navigation.pcoded-navbar')?.classList.contains('mob-open')) {
         this.navCollapsedMob = !this.navCollapsedMob;
-      }, 100);
-    } else {
-      this.navCollapsedMob = !this.navCollapsedMob;
+        setTimeout(() => {
+          this.navCollapsedMob = !this.navCollapsedMob;
+        }, 100);
+      } else {
+        this.navCollapsedMob = !this.navCollapsedMob;
+      }
     }
   }
-}
+
 
 handleKeyDown(event: KeyboardEvent): void {
   if (event.key === 'Escape') {
@@ -77,5 +76,8 @@ closeMenu(): void {
       this.renderer.removeClass(navElement, 'mob-open');
     }
   }
+}
+ngOnInit() {
+  //console.log('Admin Component Loaded 16.01.2025');
 }
 }

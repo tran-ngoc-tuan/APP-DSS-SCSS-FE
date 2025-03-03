@@ -2,6 +2,7 @@ import { Component, Input } from '@angular/core';
 import { NavigationItem } from '../../navigation';
 import { CommonModule } from '@angular/common';  // Import CommonModule để sử dụng trong component
 import { RouterModule } from '@angular/router';  // Import RouterModule
+import { FunctionMenu } from '@src/app/core/models/menu.model';
 
 @Component({
   selector: 'app-nav-item',
@@ -11,14 +12,15 @@ import { RouterModule } from '@angular/router';  // Import RouterModule
   styleUrl: './nav-item.component.scss'
 })
 export class NavItemComponent {
+
+ 
 // public props
-@Input() item_item!: NavigationItem;
+@Input() item_item!: FunctionMenu;
 ngOnInit() {
-  //console.log('Tôi là nav-item:',this.item_item.title);
-  //console.log('Tôi là nav-item:', JSON.stringify(this.item_NavContent.title, null, 2));
-  //console.table(this.item_NavContent.children);
- // console.log('Tôi là nav-item',this.item.title);
+  //console.log('Nav Item 16012025:', this.item_item.url);
 }
+
+
 // public method
 closeOtherMenu(event: MouseEvent) {
   const ele = event.target as HTMLElement;

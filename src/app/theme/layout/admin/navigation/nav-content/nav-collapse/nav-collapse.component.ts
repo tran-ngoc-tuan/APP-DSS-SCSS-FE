@@ -4,6 +4,7 @@ import { RouterModule } from '@angular/router';
 import { NavigationItem } from '../../navigation';
 import { NavItemComponent } from "../nav-item/nav-item.component";
 import { animate, style, transition, trigger } from '@angular/animations';
+import { FunctionMenu } from '@src/app/core/models/menu.model';
 
 @Component({
   selector: 'app-nav-collapse',
@@ -24,7 +25,7 @@ import { animate, style, transition, trigger } from '@angular/animations';
 })
 export class NavCollapseComponent {
   // Nhận input từ NavigationItem truyền từ cha
-  @Input() item_collapse!: NavigationItem;
+  @Input() item_collapse!: FunctionMenu;
   @Input() depth: number = 0; // Khai báo thêm `depth` nếu cần sử dụng đệ quy sâu hơn
   isOpen = false;
   isCollapsed: boolean = false; // Mặc định đóng menu
@@ -36,7 +37,7 @@ export class NavCollapseComponent {
   
   async loadNavGroupComponent() {
     if (this.isDestroyed|| this.hasLoaded) {
-      console.log("Component đã bị hủy hoặc đã được load trước đó.");
+      //console.log("Component đã bị hủy hoặc đã được load trước đó.");
       return;
     }
   
@@ -53,7 +54,7 @@ export class NavCollapseComponent {
         console.warn("Xuất hiện: " + this.item_collapse.children);
         if (this.item_collapse?.children) {
           const uniqueChildren = this.item_collapse.children; // Đảm bảo dữ liệu là duy nhất
-          console.warn("Lần: " + this.depth,uniqueChildren);
+          //console.warn("Lần: " + this.depth,uniqueChildren);
           uniqueChildren.forEach(child => {
             if (child.type === 'group' || child.type === 'collapse') {
               const componentRef = this.container.createComponent(NavGroupComponent);
@@ -68,13 +69,13 @@ export class NavCollapseComponent {
       });
       this.hasLoaded = true; // Đánh dấu đã load
     } catch (error) {
-      console.error("Lỗi khi tải NavGroupComponent:", error);
+      //console.error("Lỗi khi tải NavGroupComponent:", error);
     }
   }
   
   
   // Hàm trackBy để tối ưu hóa *ngFor
-trackItem(index: number, child: NavigationItem):any  {
+trackItem(index: number, child: FunctionMenu):any  {
   return child?.id|| index;
 }
 // Kiểm tra xem có children không
@@ -90,13 +91,14 @@ navCollapse(e: MouseEvent) {
   e.preventDefault();
   e.stopPropagation();
 
+
   // Toggle trạng thái `isCollapsed`
   this.isCollapsed = !this.isCollapsed;
 
   // Xác định phần tử parent
   const parent = (e.target as HTMLElement).closest('.pcoded-hasmenu') as HTMLElement | null;
   if (!parent) {
-    console.warn('Parent element not found!');
+    //console.warn('Parent element not found!');
     return;
   }
 
@@ -133,7 +135,7 @@ navCollapse(e: MouseEvent) {
 
   // Nếu không có submenu trong DOM nhưng có dữ liệu con, buộc cập nhật lại giao diện
   if (!submenu && this.hasChildren()) {
-    console.warn('Submenu not rendered but children exist.');
+    //console.warn('Submenu not rendered but children exist.');
     setTimeout(() => {
       this.cdr.detectChanges(); // Buộc Angular cập nhật DOM
     }, 0);
@@ -148,18 +150,18 @@ navCollapse(e: MouseEvent) {
     parentMenu.classList.add('pcoded-trigger');
     ancestor = parentMenu.closest('.pcoded-submenu');
   }
-
+/*
   console.log('Menu state:', {
     isCurrentlyOpen,
     isCollapsed: this.isCollapsed,
     submenu,
     children: this.item_collapse?.children,
-  });
+  });*/
 }
 
 
 
-
+/*
 toggleCollapse(): void {
 
   if (this.isDestroyed) {
@@ -175,7 +177,7 @@ toggleCollapse(): void {
     //console.log("Classes applied:", this.isCollapsed ? "active" : "not-active");
     this.cdr.markForCheck(); // Cập nhật giao diện
   }  
-}
+}*/
 ngOnDestroy() {
   this.isDestroyed = true; // Đánh dấu là component đã bị hủy
   if (this.container) {
@@ -184,17 +186,17 @@ ngOnDestroy() {
 }
 
 async ngAfterViewInit() {
-  console.log("NavCollapseComponent: ngAfterViewInit");
+  //console.log("NavCollapseComponent: ngAfterViewInit");
   if (!this.container) {
-    console.warn("ViewContainerRef 'container' chưa được khởi tạo.");
+    //console.warn("ViewContainerRef 'container' chưa được khởi tạo.");
     return;
   }
   if (this.hasLoaded) {
-    console.log("loadNavGroupComponent đã được gọi trước đó, bỏ qua lần này.");
+    //console.log("loadNavGroupComponent đã được gọi trước đó, bỏ qua lần này.");
     return;
   }
   this.hasLoaded = true;
-  console.log("NavCollapseComponent: NgAfterViewInit đang gọi loadNavGroupComponent");
+  //console.log("NavCollapseComponent: NgAfterViewInit đang gọi loadNavGroupComponent");
   await this.loadNavGroupComponent();
 }
 

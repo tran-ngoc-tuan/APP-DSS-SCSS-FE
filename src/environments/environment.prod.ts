@@ -2,5 +2,6 @@ const packageInfo = require('../../package.json');  // Sử dụng require thay 
 export const environment = {
   appVersion: packageInfo.version,
   production: true,
-  apiUrl: 'http://localhost:4200'
+  // Ở môi trường production, bạn cần URL tuyệt đối
+  apiBaseUrl: 'https://ebill.khpc.vn:7777'
 };

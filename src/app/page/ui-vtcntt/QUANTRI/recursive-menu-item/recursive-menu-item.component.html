@@ -1,0 +1,25 @@
+
+
+<div class="menu-item" [ngStyle]="{ 'margin-left.px': level * 20 }">
+  <div class="form-check d-flex align-items-center">
+    <input
+      type="checkbox"
+      class="form-check-input me-2"
+      [checked]="item.externals"
+      (change)="onCheckboxChange($event, item)"
+    />
+    <label class="form-check-label">
+      <i [ngClass]="item.children?.length ? 'fas fa-folder' : 'fas fa-file'" class="me-2"></i>
+      {{ item.title }}
+    </label>
+  </div>
+
+  <!-- Hiển thị cấp con -->
+  <div *ngIf="item.children?.length" class="children">
+    <app-recursive-menu-item
+      *ngFor="let child of item.children"
+      [item]="child"
+      [level]="level + 1"
+    ></app-recursive-menu-item>
+  </div>
+</div>

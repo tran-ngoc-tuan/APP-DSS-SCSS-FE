@@ -1,0 +1,11 @@
+.navbar-content {
+    &.collapsed {
+      ul.nav {
+        width: 60px; // Chỉ hiển thị icon
+      }
+      li .menu-text {
+        display: none; // Ẩn text trong menu
+      }
+    }
+  }
+  

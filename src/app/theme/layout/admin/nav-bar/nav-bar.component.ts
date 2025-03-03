@@ -18,6 +18,9 @@ export class NavBarComponent {
   windowWidth!: number; // Sẽ được gán khi chắc chắn trong trình duyệt
   @Output() NavCollapse = new EventEmitter<boolean>();;
   @Output() NavCollapsedMob = new EventEmitter<boolean>();;
+
+  isMenuCollapsed = false; // Trạng thái menu (thu gọn hoặc không)
+
   constructor(@Inject(PLATFORM_ID) private platformId: any) {
     // Chỉ gán windowWidth nếu đang trong môi trường trình duyệt
     if (isPlatformBrowser(this.platformId)) {
@@ -27,18 +30,27 @@ export class NavBarComponent {
 
   // public method
   toggleMenuCollapse() {
-    this.menuClass = !this.menuClass; // Đổi trạng thái thu gọn
+   
+    //this.menuClass = !this.menuClass; // Đổi trạng thái thu gọn
+    this.isMenuCollapsed = !this.isMenuCollapsed;
+    //console.log('Menu status isMenuCollapsed:', this.isMenuCollapsed ? 'Collapsed' : 'Expanded');
     this.NavCollapse.emit(this.menuClass);
-    this.collapseStyle = this.menuClass ? 'none' : 'block'; // Điều chỉnh collapseStyle khi thu gọn
+  }
+  navCollapseMob() {
+    //console.log('Con cật');
+    if (this.windowWidth < 992) {
+      this.NavCollapsedMob.emit();
+    }
   }
   // public method
   toggleMobOption() {   
+    //console.log('Menu status: Con cật');
     this.menuClass = !this.menuClass;
     this.collapseStyle = this.menuClass ? 'block' : 'none';
   }
 
   navCollapse() {
-    console.warn('Hello ComponentNavBar');
+    //console.warn('Hello ComponentNavBar');
     if (this.windowWidth >= 992) {
       this.NavCollapse.emit();
     }
@@ -52,9 +64,5 @@ export class NavBarComponent {
     }
   }
 
-  navCollapseMob() {
-    if (this.windowWidth < 992) {
-      this.NavCollapsedMob.emit();
-    }
-  }
+  
 }
