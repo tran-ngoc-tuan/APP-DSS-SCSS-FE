@@ -1,88 +1,15 @@
 <div class="container-fluid permission-management">
   <h3 class="text-center my-3 fw-bold text-primary">
-    <i class="fas fa-user-shield me-2"></i> Phân quyền chức năng menu
+    <i class="fas fa-user-shield me-2"></i> Ký số
   </h3>
 
   <div class="row justify-content-center">
-    <!-- 🟢 Nhóm chọn Người dùng -->
-    <div class="col-lg-6 col-md-8 mb-4">
-      <div class="card shadow-sm border-0 rounded-3">
-        <div class="card-header bg-primary text-white text-center fw-bold">
-          Chọn thông tin cấn cấp quyền
-        </div>
-        <div class="card-body">
-          <div class="row g-3">
-            <div class="col-12">
-              <label for="donvi" class="form-label fw-semibold">Đơn vị:</label>
-              <select id="donvi" class="form-select" [(ngModel)]="selectedDonViId">
-                <option *ngFor="let donvi of donvi" [value]="donvi.ma">{{ donvi.ten }}</option>
-              </select>
-            </div>
-
-            <div class="col-12">
-              <label for="phongban" class="form-label fw-semibold">Phòng ban:</label>
-              <select id="phongban" class="form-select" [(ngModel)]="selectedPhongBanId" (ngModelChange)="onPhongBanChange($event)">
-                <option *ngFor="let phongban of phongban" [value]="phongban.idPhongBan">
-                  {{ phongban.tenPhongBan }}
-                </option>
-              </select>
-
-            </div>
-
-            <div class="col-12">
-              <label for="user" class="form-label fw-semibold">Người dùng:</label>
-              <select id="user" class="form-select" [(ngModel)]="selectedUserId">
-                <option *ngFor="let user of user" [value]="user.idnhanvien">
-                  {{ user.hovaten }}
-                </option>
-              </select>
-            </div>
-
-            <div class="col-12">
-              <label for="linhvuc" class="form-label fw-semibold">Lĩnh vực:</label>
-              <select id="linhvuc" class="form-select" [(ngModel)]="selectedLinhVucId" (ngModelChange)="onDomainChange($event)">
-                <option *ngFor="let linhvuc of domainMenus" [value]="linhvuc.phanHeID">
-                  {{ linhvuc.dienGiai }}
-                </option>
-              </select>
-            </div>
-
-            <div class="col-12">
-              <label for="phanmem" class="form-label fw-semibold">Phần mềm:</label>
-              <select id="phanmem" class="form-select" [(ngModel)]="softwareMenus">
-                <option *ngFor="let phanmem of softwareMenus" [value]="phanmem.phanHeID">
-                  {{ phanmem.dienGiai }}
-                </option>
-              </select>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- 🟢 Nhóm Danh sách menu -->
-    <div class="col-lg-6 col-md-8">
-      <div class="card shadow-sm border-0 rounded-3">
-        <div class="card-header bg-primary text-white text-center fw-bold">
-          Chọn chức năng để thực hiện
-        </div>
-        <div class="card-body">
-          <div class="menu-container overflow-auto" style="max-height: 400px;">
-            <ul class="list-group">
-              <li class="list-group-item" *ngFor="let item of navigationItemsFromAdmin" >
-                <app-recursive-menu-item [item]="item" [level]="0"></app-recursive-menu-item>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
   </div>
 
   <!-- 🟢 Nút Lưu -->
   <div class="text-center mt-4">
     <button class="btn btn-primary" (click)="savePermissions(2)">
-      <i class="fa fa-check me-2"></i> Cấp quyền
+      <i class="fa fa-check me-2"></i> Ký số
     </button>
   </div>
 </div>

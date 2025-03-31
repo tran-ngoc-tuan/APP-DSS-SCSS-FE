@@ -278,6 +278,7 @@ onSoftwareChange(phanHeID: string) {
   this.selectedPhanHeID = phanHeID; // Cập nhật giá trị được chọn
   console.log('🔹 Đã chọn phần mềm với ID:',this.IDUser ,this.selectedPhanHeID);
   //this.loadMenuListByUserId_idPhanHe1(Number(this.IDUser),this.selectedPhanHeID);
+  //this.reloadMenuIfValid();// Tuấn bổ sung chiều ngày 28/03/2025
 }
 // Mở modal để Thêm mới
 openAddUsersModal(content: any): void {
