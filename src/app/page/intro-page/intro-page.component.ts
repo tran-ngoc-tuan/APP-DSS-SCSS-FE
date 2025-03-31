@@ -70,7 +70,7 @@ export class IntroPageComponent {
           return;
         }
         // Chỉ gọi API khi đang chạy trên trình duyệt
-        console.warn('Đang chạy trên trình duyệt');
+        console.warn('Đang chạy trên trình duyệt into-page');
         this.loadDomainMenus();
       } else {
         // Nếu không phải trình duyệt, không thực hiện các thao tác liên quan đến localStorage
